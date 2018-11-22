@@ -1,0 +1,46 @@
+                               // SIEVE OF Eratosthenes 
+                               // To find all primes <= number (i.e. user input).
+                               // Time complexity : O(sqrt(n)loglog(n))
+
+package com.company;
+import java.io.*;
+import java.util.Scanner;
+
+class choco
+{
+    void sieveOfEratos(int number)
+    {
+        boolean primes[]=new boolean[number+1];
+        primes[0]=false;
+        primes[1]=false;
+        for (int i=2;i<=number;i++)
+        {
+            primes[i]=true;
+        }
+        for (int p=2;p<=Math.sqrt(number);p++)    //for(int p = 2; p*p <=n; p++)   //We can also do this
+        {                                         //{                              //but it is little
+            if (primes[p]==true)                      //if(primes[p] == true)      //bit less efficient.
+            {                                           //{
+                for (int j=p;j*p<=number;j++)              //for(int i = p*2; i <= n; i=i+p)
+                {                                            //primes[i] = false;
+                    primes[p*j]=false;                   //}
+                }                                  //}
+            }
+        }
+        for (int i=2;i<=number;i++)
+        {
+            if (primes[i]==true) System.out.print(i+" ");
+        }
+    }
+    public static void main(String[] args)throws IOException
+    {
+       Scanner sc=new Scanner(System.in);
+       System.out.println("This is Sieve-of-Eratosthenes.");
+       System.out.println("In this algorithm you can have all primes less than or equal to a number.");
+       System.out.println("Enter the number for which you wanna have the primes.");
+       int number=sc.nextInt();
+       System.out.println("The prime numbers <= your number are: ");
+       choco obj=new choco();
+       obj.sieveOfEratos(number);
+    }
+}
