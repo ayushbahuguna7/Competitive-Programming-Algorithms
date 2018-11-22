@@ -1,0 +1,90 @@
+                        // FAST MATRIX EXPONENTIATION (To calculate Nth term in the FIBONACCI Sequence)
+                        // Time Complexity: O(Log N)
+
+
+
+package com.company;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+class Reader {
+    static BufferedReader reader;
+    static StringTokenizer tokenizer;
+
+    static void init(InputStream input) {
+        reader = new BufferedReader(
+                new InputStreamReader(input) );
+        tokenizer = new StringTokenizer("");
+    }
+
+    static String next() throws IOException {
+        while ( ! tokenizer.hasMoreTokens() ) {
+            tokenizer = new StringTokenizer(
+                    reader.readLine() );
+        }
+        return tokenizer.nextToken();
+    }
+
+    static int nextInt() throws IOException {
+        return Integer.parseInt( next() );
+    }
+}
+
+class chocolate
+{
+    // A utility function to multiply two
+    // matrices a[][] and b[][].
+
+    static void Multiply(int a[][], int b[][])
+    {
+        int mul[][]=new int[2][2];    //Creating an auxiliary matrix to store a[][]*b[][].
+        for(int i=0;i<2;i++)
+        {
+            for(int j=0;j<2;j++)
+            {
+                mul[i][j]=0;
+                for(int k=0;k<2;k++)
+                {
+                    mul[i][j]=mul[i][j]+(a[i][k]*b[k][j]);
+                }
+            }
+        }
+        for(int i=0;i<2;i++)
+        {
+            for(int j=0;j<2;j++)
+            {
+                a[i][j]=mul[i][j];     //Storing the multiplication result in a[][].
+            }
+        }
+    }
+    static int power(int F[][], int n)   //Function to compute (F[][])^(N-1)).
+    {
+        int M[][]={{1,1},{1,0}};
+        if(n==1)return F[0][0];       // BASE Condition
+        power(F,n/2);
+        Multiply(F,F);
+        if(n%2!=0) Multiply(F,M);
+        return F[0][0];
+    }
+    static int findNthTerm(int n)
+    {
+        int F[][]={{1,1},{1,0}};
+        return power(F,n-1);
+    }
+
+    public static void main(String[] args)throws IOException
+    {
+        Reader.init(System.in);
+        System.out.println("Program to find Nth Fibonacci number using Matrix Exponentiation.");
+        System.out.println("Enter the Nth term you wanna find in the Fibonacci sequence:");
+        int n=Reader.nextInt();
+        if (n==0)System.out.println("0");
+        else if (n==1)System.out.println("1");
+        else System.out.println(findNthTerm(n));
+    }
+}
+
+
