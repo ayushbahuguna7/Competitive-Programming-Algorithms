@@ -1,5 +1,5 @@
                                // SIEVE OF Eratosthenes 
-                               // To find all primes <= number (i.e. user input).
+                               // To find all primes <= number (i.e. user input)
                                // Time complexity : O(sqrt(n)loglog(n))
 
 package com.company;
