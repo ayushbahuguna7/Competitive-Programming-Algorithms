@@ -17,14 +17,14 @@ class choco
         {
             primes[i]=true;
         }
-        for (int p=2;p<=Math.sqrt(number);p++)    //for(int p = 2; p*p <=n; p++)   //We can also do this
-        {                                         //{                              //but it is little
-            if (primes[p]==true)                      //if(primes[p] == true)      //bit less efficient.
-            {                                           //{
-                for (int j=p;j*p<=number;j++)              //for(int i = p*2; i <= n; i=i+p)
-                {                                            //primes[i] = false;
-                    primes[p*j]=false;                   //}
-                }                                  //}
+        for (int p=2;p<=Math.sqrt(number);p++)    
+        {                                         
+            if (primes[p]==true)                      
+            {                                          
+                for (int j=p;j*p<=number;j++)              
+                {                                           
+                    primes[p*j]=false;                   
+                }                                  
             }
         }
         for (int i=2;i<=number;i++)
